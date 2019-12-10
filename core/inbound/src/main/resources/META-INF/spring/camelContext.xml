@@ -14,11 +14,11 @@
             <ref bean="demographicImpl"/>
         </jaxrs:serviceBeans>
     </jaxrs:server>
+    <bean class="com.redhat.usecase.route.RouteProcessor" id="myRouteProcessor"/>
     <camelContext id="inboundRest" trace="false" xmlns="http://camel.apache.org/schema/spring">
+    	<routeBuilder ref="myRouteProcessor"/>
         <dataFormats>
             <jaxb contextPath="com.customer.app" id="personFormat" partClass="com.customer.app.Person"/>
         </dataFormats>
-        <!-- this is the route called by DEIMServiceImpl -->
-        <route id="handleRest"/>
     </camelContext>
 </beans>
