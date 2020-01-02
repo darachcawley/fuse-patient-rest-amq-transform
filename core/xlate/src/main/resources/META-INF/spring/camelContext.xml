@@ -12,6 +12,7 @@
     <constructor-arg value="true" />
   </bean>
   <bean class="com.redhat.customer.route.RouteProcessor" id="routeProcessor"/>
+  <bean class="com.redhat.customer.translate.TransformToExecuteMatch" id="transformToExecuteMatch"/>
 
   <!-- This reference just lets all of our routes use the same
   connection pool set up in the mq-service project-->

@@ -14,8 +14,10 @@ public class RouteProcessor extends RouteBuilder{
 		
 		//the xlate route
 		from("activemq:queue:q.empi.deim.in")
-			.log(LoggingLevel.INFO, "com.customer.route.RouteProcessor", "Route: direct:convertRoute :: Body: ${body}")
+			.log(LoggingLevel.INFO, "com.customer.route.RouteProcessor", "Route: xlateRoute, received new message on queue :: Body: ${body}")
 			.unmarshal("personFormat")
+			.beanRef("transformToExecuteMatch", "convertTo")
+			.log(LoggingLevel.INFO, "com.customer.route.RouteProcessor", "Route: xlateRoute, unmarshalled & transformed to transformToExecuteMatch :: Body: ${body}")
 			.end()
        ;
 	}
