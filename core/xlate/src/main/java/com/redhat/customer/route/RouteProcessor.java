@@ -18,6 +18,9 @@ public class RouteProcessor extends RouteBuilder{
 			.unmarshal("personFormat")
 			.beanRef("transformToExecuteMatch", "convertTo")
 			.log(LoggingLevel.INFO, "com.customer.route.RouteProcessor", "Route: xlateRoute, unmarshalled & transformed to transformToExecuteMatch :: Body: ${body}")
+			.marshal("nextgateFormat")
+			.to("activemq:queue:q.empi.nextgate.out")
+			.log(LoggingLevel.INFO, "com.customer.route.RouteProcessor", "Route: xlateRoute, added to nextgate queue :: Body: ${body}")
 			.end()
        ;
 	}
